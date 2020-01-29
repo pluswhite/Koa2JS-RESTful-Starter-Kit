@@ -1,0 +1,37 @@
+{
+  "name": "koa2js-restful-starter-kit",
+  "version": "0.0.1",
+  "description": "Koa2 RESTful Starter kit",
+  "main": "app.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/nodemon app/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricThsi/Koa2JS-RESTful-Starter-Kit.git"
+  },
+  "keywords": [
+    "Koa2",
+    "RESTful",
+    "Starter"
+  ],
+  "author": "EricThsi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EricThsi/Koa2JS-RESTful-Starter-Kit/issues"
+  },
+  "homepage": "https://github.com/EricThsi/Koa2JS-RESTful-Starter-Kit#readme",
+  "dependencies": {
+    "koa": "^2.11.0"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.1.0",
+    "nodemon": "^2.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
