@@ -4,7 +4,7 @@
   "description": "Koa2 RESTful Starter kit",
   "main": "app.js",
   "scripts": {
-    "dev": "./node_modules/.bin/nodemon server/app.js",
+    "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,10 +24,13 @@
   "homepage": "https://github.com/EricThsi/Koa2JS-RESTful-Starter-Kit#readme",
   "dependencies": {
     "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-json-error": "^3.1.2",
     "koa-router": "^8.0.6",
     "koa-static": "^5.0.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.0",
     "cz-conventional-changelog": "^3.1.0",
     "nodemon": "^2.0.2"
   },

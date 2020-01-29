@@ -1,3 +1,7 @@
+/**
+ * Routes entry file
+ * Read routes
+ */
 const fs = require('fs');
 
 module.exports = app => {
