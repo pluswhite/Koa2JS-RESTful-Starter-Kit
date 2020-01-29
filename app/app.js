@@ -1,11 +1,18 @@
 const Koa = require('koa');
 
+const config = require('../config');
+const routing = require('./routes');
 const app = new Koa();
 
-app.use(async () => {
+const { port } = config;
+
+app.use(async (ctx, next) => {
   console.log('Hello World!');
+  await next();
 });
 
-app.listen(3000, () => {
+routing(app);
+
+app.listen(port, () => {
   console.log(`Server is running at port 3000`);
 });
