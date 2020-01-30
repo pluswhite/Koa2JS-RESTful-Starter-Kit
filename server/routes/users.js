@@ -4,8 +4,8 @@ const router = new Router({
 });
 
 const usersCtl = require('../controllers/users');
-const { index } = usersCtl;
+const { getList } = usersCtl;
 
-router.get('/', index);
+router.get('/', getList);
 
 module.exports = router;

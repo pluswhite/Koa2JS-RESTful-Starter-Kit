@@ -1,8 +1,19 @@
-module.exports = {
-  port: 3000,
-  secret: 'your-webapp-secret',
-  database: {
-    username: 'your-username',
-    password: 'your-password',
-  },
-};
+const env = process.env.NODE_ENV;
+const defaultConfig = require('./default');
+const devConfig = require('./dev');
+const prodConfig = require('./prod');
+
+let appConfig;
+
+switch (env) {
+  case 'development':
+    appConfig = devConfig;
+    break;
+  case 'production':
+    appConfig = prodConfig;
+    break;
+  default:
+    appConfig = defaultConfig;
+}
+
+module.exports = appConfig;
