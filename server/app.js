@@ -24,10 +24,11 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   },
   () => {
     console.log('Database(MongoDB) connect successfully!');
-  }
+  },
 );
 mongoose.connection.on('error', console.error);
 
@@ -36,7 +37,7 @@ app.use(parameter(app));
 app.use(
   koaBody({
     multipart: true,
-  })
+  }),
 );
 app.use(error());
 

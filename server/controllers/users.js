@@ -1,8 +1,10 @@
 /**
  * Users Controller
  */
-
+const jwt = require('jsonwebtoken');
 const User = require('../models/users');
+
+const { appSecret: secret } = require('../../config');
 
 class UsersController {
   async index(ctx) {
@@ -93,6 +95,40 @@ class UsersController {
       ctx.throw(404, `User doesn't exist.`);
     }
     ctx.status = 204;
+  }
+
+  // user login
+  async userLogin(ctx) {
+    // verify parameters
+    ctx.verifyParams({
+      name: {
+        type: 'string',
+        required: true,
+      },
+      password: {
+        type: 'string',
+        required: true,
+      },
+    });
+
+    const user = await User.findOne(ctx.request.body);
+    if (!user) {
+      ctx.throw(401, 'Username or password not correct! ');
+    }
+    const { _id, name } = user;
+    // generate token by id & name from user
+    const token = jwt.sign(
+      {
+        _id,
+        name,
+      },
+      secret,
+      {
+        expiresIn: '1d',
+      },
+    );
+    ctx.state.user = user;
+    ctx.body = { token };
   }
 }
 
