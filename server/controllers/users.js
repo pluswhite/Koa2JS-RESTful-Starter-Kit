@@ -10,8 +10,18 @@ class UsersController {
   }
 
   // get user list
-  async getList(ctx) {
+  async getUserList(ctx) {
     ctx.body = await User.find();
+  }
+
+  // get user by id
+  async getUserById(ctx) {
+    const id = ctx.params.id;
+    const user = await User.findById(id);
+    if (!user) {
+      ctx.throw(404, `User doesn't exist.`);
+    }
+    ctx.body = user;
   }
 
   // create new user
@@ -38,6 +48,51 @@ class UsersController {
     }
     const user = await new User(bodyData).save();
     ctx.body = user;
+  }
+
+  // update user
+  async updateUser(ctx) {
+    const id = ctx.params.id;
+    const bodyData = ctx.request.body;
+    // verify parameters
+    ctx.verifyParams({
+      name: {
+        type: 'string',
+        required: false,
+      },
+      password: {
+        type: 'string',
+        required: false,
+      },
+      avatar: {
+        type: 'string',
+        required: false,
+      },
+      gender: {
+        type: 'number',
+        required: false,
+      },
+      locations: {
+        type: 'array',
+        itemType: 'number',
+        required: false,
+      },
+    });
+    // console.log(bodyData);
+    const user = await User.findByIdAndUpdate(id, bodyData);
+    if (!user) {
+      ctx.throw(404, 'User does not exist');
+    }
+    ctx.body = user;
+  }
+
+  // delete user
+  async deleteUser(ctx) {
+    const user = await User.findByIdAndRemove(ctx.params.id);
+    if (!user) {
+      ctx.throw(404, `User doesn't exist.`);
+    }
+    ctx.status = 204;
   }
 }
 

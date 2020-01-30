@@ -4,9 +4,18 @@ const router = new Router({
 });
 
 const usersCtl = require('../controllers/users');
-const { getList, createUser } = usersCtl;
+const {
+  getUserList,
+  createUser,
+  updateUser,
+  getUserById,
+  deleteUser,
+} = usersCtl;
 
-router.get('/', getList);
+router.get('/', getUserList);
+router.get('/:id', getUserById);
 router.post('/', createUser);
+router.put('/:id', updateUser);
+router.delete('/:id', deleteUser);
 
 module.exports = router;
