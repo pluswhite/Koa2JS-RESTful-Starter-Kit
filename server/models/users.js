@@ -4,7 +4,7 @@ const { Schema, model } = mongoose;
 
 const userSchema = new Schema(
   {
-    _v: {
+    __v: {
       type: Number,
       select: false,
     },
@@ -21,7 +21,7 @@ const userSchema = new Schema(
       type: String,
     },
     gender: {
-      type: String,
+      type: Number,
       required: true,
       enum: [0, 1, 2],
       default: 0,

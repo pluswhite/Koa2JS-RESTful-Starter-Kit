@@ -1,6 +1,7 @@
 const path = require('path');
 const Koa = require('koa');
 const static = require('koa-static');
+const parameter = require('koa-parameter');
 const koaBody = require('koa-body');
 const error = require('koa-json-error');
 const mongoose = require('mongoose');
@@ -31,6 +32,7 @@ mongoose.connect(
 mongoose.connection.on('error', console.error);
 
 app.use(static(path.join(__dirname, '../public')));
+app.use(parameter(app));
 app.use(
   koaBody({
     multipart: true,
