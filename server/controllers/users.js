@@ -11,6 +11,26 @@ class UsersController {
     ctx.body = 'Users Page';
   }
 
+  // middlewares
+  // check owner for current operation
+  async checkOwner(ctx, next) {
+    // console.log(ctx.state);
+    if (ctx.params.id !== ctx.state.user._id) {
+      ctx.throw(404, 'Forbidden!');
+    }
+    await next();
+  }
+
+  // check user exist or not
+  async checkUserExist(ctx, next) {
+    const user = await User.findById(ctx.params.id);
+    if (!user) {
+      ctx.throw(404, `User doesn't exist.`);
+    }
+    ctx.state.user = user;
+    await next();
+  }
+
   // get user list
   async getUserList(ctx) {
     ctx.body = await User.find();

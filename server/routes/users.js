@@ -7,6 +7,8 @@ const router = new Router({
 const { appSecret: secret } = require('../../config');
 const usersCtl = require('../controllers/users');
 const {
+  checkOwner,
+  checkUserExist,
   getUserList,
   createUser,
   updateUser,
@@ -20,10 +22,10 @@ const auth = jwt({
 });
 
 router.get('/', getUserList);
-router.get('/:id', getUserById);
+router.get('/:id', checkUserExist, getUserById);
 router.post('/', createUser);
-router.put('/:id', auth, updateUser);
-router.delete('/:id', auth, deleteUser);
+router.put('/:id', auth, checkOwner, updateUser);
+router.delete('/:id', auth, checkOwner, deleteUser);
 router.post('/login', userLogin);
 
 module.exports = router;
