@@ -50,20 +50,24 @@ class UsersController {
   async createUser(ctx) {
     // verify parameters
     ctx.verifyParams({
-      name: {
-        type: 'string',
+      email: {
+        type: 'email',
         required: true,
       },
       password: {
         type: 'string',
         required: true,
       },
+      name: {
+        type: 'string',
+        required: false,
+      },
     });
     // check user exist or not
     const bodyData = ctx.request.body;
-    const { name } = bodyData;
+    const { email } = bodyData;
     const existUser = await User.findOne({
-      name,
+      email,
     });
     if (existUser) {
       ctx.throw(409, 'User already exists.');
@@ -80,6 +84,10 @@ class UsersController {
     ctx.verifyParams({
       name: {
         type: 'string',
+        required: false,
+      },
+      email: {
+        type: 'email',
         required: false,
       },
       password: {
@@ -121,8 +129,8 @@ class UsersController {
   async userLogin(ctx) {
     // verify parameters
     ctx.verifyParams({
-      name: {
-        type: 'string',
+      email: {
+        type: 'email',
         required: true,
       },
       password: {
@@ -133,14 +141,15 @@ class UsersController {
 
     const user = await User.findOne(ctx.request.body);
     if (!user) {
-      ctx.throw(401, 'Username or password not correct! ');
+      ctx.throw(401, 'Email or password not correct! ');
     }
-    const { _id, name } = user;
+    const { _id, name, email } = user;
     // generate token by id & name from user
     const token = jwt.sign(
       {
         _id,
         name,
+        email,
       },
       secret,
       {

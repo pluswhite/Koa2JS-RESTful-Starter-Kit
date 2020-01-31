@@ -11,6 +11,11 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: true,
+      default: 'Guest',
+    },
+    email: {
+      type: String,
+      required: true,
     },
     password: {
       type: String,
