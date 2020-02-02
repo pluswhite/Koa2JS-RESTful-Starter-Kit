@@ -24,6 +24,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
+      select: false,
     },
     gender: {
       type: Number,

@@ -33,13 +33,30 @@ class UsersController {
 
   // get user list
   async getUserList(ctx) {
-    ctx.body = await User.find();
+    const { query } = ctx;
+    const { per_page = 10, page = 1, q = '' } = query;
+    const currPage = Math.max(page * 1, 1) - 1;
+    const perPage = Math.max(per_page * 1, 1);
+    const queryStr = new RegExp(q);
+
+    ctx.body = await User.find({
+      name: queryStr,
+    })
+      .limit(perPage)
+      .skip(currPage * perPage);
   }
 
   // get user by id
   async getUserById(ctx) {
-    const id = ctx.params.id;
-    const user = await User.findById(id);
+    const { fields = '' } = ctx.query;
+    const { id } = ctx.params;
+    const selectFields = fields
+      .split(';')
+      .filter(f => f)
+      .map(f => ` +${f}`)
+      .join('');
+
+    const user = await User.findById(id).select(selectFields);
     if (!user) {
       ctx.throw(404, `User doesn't exist.`);
     }
