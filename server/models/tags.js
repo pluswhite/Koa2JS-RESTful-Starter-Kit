@@ -12,6 +12,10 @@ const tagSchema = new Schema(
       type: String,
       required: true,
     },
+    descriptions: {
+      type: String,
+      default: '',
+    },
   },
   {
     timestamps: true,
