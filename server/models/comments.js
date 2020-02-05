@@ -19,10 +19,8 @@ const commentSchema = new Schema(
       select: false,
     },
     postId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Post',
+      type: String,
       required: true,
-      select: false,
     },
     rootCommentId: {
       type: Schema.Types.ObjectId,
