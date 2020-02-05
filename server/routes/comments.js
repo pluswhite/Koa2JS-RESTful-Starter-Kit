@@ -1,7 +1,7 @@
 const jwt = require('koa-jwt');
 const Router = require('koa-router');
 const router = new Router({
-  prefix: '/comments',
+  prefix: '/posts/:postId/comments',
 });
 
 const { appSecret: secret } = require('../../config');
@@ -20,7 +20,7 @@ const auth = jwt({
 
 router.get('/', getCommentList);
 router.get('/:id', getCommentById);
-router.post('/', createComment);
+router.post('/', auth, createComment);
 router.put('/:id', auth, updateComment);
 router.delete('/:id', auth, deleteComment);
 

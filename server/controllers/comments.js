@@ -1,3 +1,6 @@
+/**
+ * Comment Controller
+ */
 const Comment = require('../models/comments');
 
 class CommentController {
@@ -30,7 +33,7 @@ class CommentController {
 
     const comment = await Comment.findById(id)
       .select(selectFields)
-      .populated('commentator');
+      .populate('commentator');
     if (!comment) {
       ctx.throw(404, `Comment doesn't exist.`);
     }
