@@ -16,7 +16,8 @@ class PostController {
       content: queryStr,
     })
       .limit(perPage)
-      .skip(currPage * perPage);
+      .skip(currPage * perPage)
+      .populate('author tags category');
   }
 
   async getPostById(ctx) {

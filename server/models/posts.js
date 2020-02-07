@@ -17,7 +17,9 @@ const postSchema = new Schema(
     },
     content: {
       type: String,
-      select: false,
+      select: true,
+      require: true,
+      default: '',
     },
     author: {
       type: Schema.Types.ObjectId,
@@ -28,7 +30,6 @@ const postSchema = new Schema(
     category: {
       type: Schema.Types.ObjectId,
       ref: 'Category',
-      // required: true,
     },
     tags: {
       type: [

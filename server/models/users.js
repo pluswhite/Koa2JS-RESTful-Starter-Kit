@@ -16,6 +16,7 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
+      select: false,
     },
     password: {
       type: String,
@@ -31,6 +32,7 @@ const userSchema = new Schema(
       required: true,
       enum: [0, 1, 2],
       default: 0,
+      select: false,
     },
     locations: {
       type: [
@@ -38,6 +40,7 @@ const userSchema = new Schema(
           Type: String,
         },
       ],
+      select: false,
     },
   },
   {

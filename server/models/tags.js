@@ -14,6 +14,7 @@ const tagSchema = new Schema(
     },
     descriptions: {
       type: String,
+      select: false,
       default: '',
     },
   },
