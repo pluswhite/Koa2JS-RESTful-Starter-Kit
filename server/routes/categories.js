@@ -1,7 +1,7 @@
 const jwt = require('koa-jwt');
 const Router = require('koa-router');
 const router = new Router({
-  prefix: '/categories',
+  prefix: '/api/categories',
 });
 
 const { appSecret: secret } = require('../../config');
