@@ -7,6 +7,7 @@ const koaBody = require('koa-body');
 const logger = require('koa-logger');
 const morgan = require('koa-morgan');
 const error = require('koa-json-error');
+const cors = require('@koa/cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
@@ -43,6 +44,7 @@ app.use(
     multipart: true,
   }),
 );
+app.use(cors());
 app.use(logger());
 // logs use morgan
 if (env !== 'production') {
