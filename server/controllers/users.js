@@ -34,6 +34,9 @@ class UsersController {
   // get user list
   async getUserList(ctx) {
     const { query } = ctx;
+    // per_page: items per page
+    // page: page number
+    // q: search string
     const { per_page = 10, page = 1, q = '' } = query;
     const currPage = Math.max(page * 1, 1) - 1;
     const perPage = Math.max(per_page * 1, 1);
@@ -80,6 +83,7 @@ class UsersController {
         required: false,
       },
     });
+
     // check user exist or not
     const bodyData = ctx.request.body;
     const { email } = bodyData;
@@ -125,6 +129,7 @@ class UsersController {
         required: false,
       },
     });
+
     // console.log(bodyData);
     const user = await User.findByIdAndUpdate(id, bodyData);
     if (!user) {

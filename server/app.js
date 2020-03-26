@@ -23,9 +23,10 @@ const { port, database } = config;
 const { username, password, dbname } = database;
 
 // Database config
-const dbConnectUri = `mongodb+srv://${username}:${password}@webapp-voh6z.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+const dbConnectURI = `mongodb+srv://${username}:${password}@webapp-voh6z.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+// Connect database
 mongoose.connect(
-  dbConnectUri,
+  dbConnectURI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -37,14 +38,19 @@ mongoose.connect(
 );
 mongoose.connection.on('error', console.error);
 
+// static folder
 app.use(static(path.join(__dirname, '../public')));
+// parameter verify
 app.use(parameter(app));
+// http body
 app.use(
   koaBody({
     multipart: true,
   }),
 );
+// cores
 app.use(cors());
+// logs
 app.use(logger());
 // logs use morgan
 if (env !== 'production') {
@@ -70,6 +76,7 @@ app.use(
   }),
 );
 
+// route config
 routing(app);
 
 app.listen(port, () => {
