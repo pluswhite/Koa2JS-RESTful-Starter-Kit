@@ -1,6 +1,15 @@
-const mongoose = require('mongoose');
+import mongoose, { Document } from 'mongoose';
 
 const { Schema, model } = mongoose;
+
+interface CommentDoc extends Document {
+  content: string;
+  commentator: string;
+  questionId: string;
+  answerId: string;
+  rootCommentId: string;
+  replyTo: string;
+}
 
 const commentSchema = new Schema(
   {
@@ -18,13 +27,16 @@ const commentSchema = new Schema(
       required: true,
       select: false,
     },
-    postId: {
+    questionId: {
+      type: String,
+      required: true,
+    },
+    answerId: {
       type: String,
       required: true,
     },
     rootCommentId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment',
+      type: String,
     },
     replyTo: {
       type: Schema.Types.ObjectId,
@@ -33,7 +45,7 @@ const commentSchema = new Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
-module.exports = model('Comment', commentSchema);
+export default model<CommentDoc>('Comment', commentSchema);
