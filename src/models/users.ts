@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import mongoose, { Document } from 'mongoose';
 
 const { Schema, model } = mongoose;
@@ -14,7 +15,7 @@ interface UserDoc extends Document {
     {
       company: string;
       job: string;
-    }
+    },
   ];
   educations: [
     {
@@ -23,7 +24,7 @@ interface UserDoc extends Document {
       diploma: 1 | 2 | 3 | 4 | 5;
       entrance_year: number;
       graduation_year: number;
-    }
+    },
   ];
   following: string[];
   followingTopics: string[];
@@ -172,7 +173,7 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default model<UserDoc>('User', userSchema);

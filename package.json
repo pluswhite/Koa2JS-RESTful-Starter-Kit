@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EricThsi/Study-Project-Koa2JS-WebApp.git"
+    "url": "git+https://github.com/EricThsi/Koa2JS-RESTful-Starter-Kit.git"
   },
   "keywords": [
     "Koa2",
@@ -29,9 +29,9 @@
   "author": "EricThsi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EricThsi/Study-Project-Koa2JS-WebApp/issues"
+    "url": "https://github.com/EricThsi/Koa2JS-RESTful-Starter-Kit/issues"
   },
-  "homepage": "https://github.com/EricThsi/Study-Project-Koa2JS-WebApp#readme",
+  "homepage": "https://github.com/EricThsi/Koa2JS-RESTful-Starter-Kit#readme",
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",

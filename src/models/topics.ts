@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import mongoose, { Document } from 'mongoose';
 
 const { Schema, model } = mongoose;
@@ -28,7 +29,7 @@ const topicSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default model<TopicDoc>('Topic', topicSchema);
